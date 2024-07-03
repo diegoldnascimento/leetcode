@@ -3,33 +3,17 @@
  * @return {number}
  */
 var findClosestNumber = function(nums) {
-    var ans = null
-    var key = null
-    var hashmap = new Map()
+    var closest = nums[0]
 
-    for (var i = 0; i < nums.length; i++) {
-       // real , converted
-        hashmap.set(nums[i], Math.abs(nums[i]))
-    }
-
-    for (const [real, converted] of hashmap.entries()) {
-        if (ans == null) {
-            ans = converted
-            key = real
-            continue;
-        } 
-
-        console.log(ans, key, real, converted)
-
-        if (ans >= converted) {
-            ans = converted
-            key = real
-
-            if (hashmap.get(real) && hashmap.get(real * -1)) {
-                key = Math.abs(real)
-            }
+    for (var i = 1; i < nums.length; i++) {
+        const num = nums[i];
+        
+        if (Math.abs(num) < Math.abs(closest)) {
+            closest = num;
+        } else if (Math.abs(num) === Math.abs(closest) && num > closest) {
+            closest = num;
         }
     }
 
-    return key
+    return closest
 };
