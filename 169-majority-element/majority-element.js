@@ -2,14 +2,23 @@
  * @param {number[]} nums
  * @return {number}
  */
-var majorityElement = function (nums) {
-    var map = new Map()
-    var majorityCount = Math.floor(nums.length/2)
+var majorityElement = function(nums) {
+    let candidate = null;  // Default candidate
+    let count = 0;         // Count starts at 0
 
-    for (var i = 0; i < nums.length; i++) {
-        map.set(nums[i], (map.get(nums[i]) || 0) + 1)
-        if (map.get(nums[i]) > majorityCount) {
-            return nums[i]
+    // Phase 1: Find the Candidate
+    for (const num of nums) {
+        if (count === 0) {
+            candidate = num; // Assign new candidate
         }
+        count += (num === candidate) ? 1 : -1;
     }
+
+    // Phase 2: Verify the Candidate (Optional for Leetcode as it guarantees a majority element exists)
+    let frequency = 0;
+    for (const num of nums) {
+        if (num === candidate) frequency++;
+    }
+
+    return frequency > Math.floor(nums.length / 2) ? candidate : null;
 };
