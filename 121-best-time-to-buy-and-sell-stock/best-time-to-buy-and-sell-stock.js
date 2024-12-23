@@ -3,17 +3,16 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let minPrice = prices[0];
-    let maxProfit = 0;
+    var minPrice = prices[0]
+    var maxProfit = 0
 
-    for (let i = 1; i < prices.length; i++) {
+    for (var i = 0; i < prices.length; i++) {
         if (prices[i] < minPrice) {
-            minPrice = prices[i]; // Update minPrice if a new low is found
+            minPrice = prices[i]
         } else {
-            // Only calculate profit if the current price is greater
-            maxProfit = Math.max(maxProfit, prices[i] - minPrice);
+            maxProfit = Math.max(prices[i] - minPrice, maxProfit)
         }
     }
 
-    return maxProfit;
+    return maxProfit
 };
