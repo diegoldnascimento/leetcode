@@ -10,8 +10,9 @@ var stringMatching = function (words) {
     for (var j = 0; j < words.length; j++) {
       var word2 = words[j];
 
-      if (word2.indexOf(word) !== -1 && word2 !== word) {
+      if (word2.indexOf(word) !== -1 && i !== j) {
         and.add(word);
+        break;
       }
     }
   }
