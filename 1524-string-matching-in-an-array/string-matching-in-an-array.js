@@ -1,19 +1,20 @@
-/**
- * @param {string[]} words
- * @return {string[]}
- */
 var stringMatching = function (words) {
-  words.sort((a, b) => a.length - b.length);
-  var ans = [];
+  if (words.length === 0) {
+    return [];
+  }
+  var and = new Set();
 
   for (var i = 0; i < words.length; i++) {
-    for (var j = i + 1; j < words.length; j++) {
-      if (words[j].includes(words[i])) {
-        ans.push(words[i]);
-        break;
+    var word = words[i];
+
+    for (var j = 0; j < words.length; j++) {
+      var word2 = words[j];
+
+      if (word2.indexOf(word) !== -1 && word2 !== word) {
+        and.add(word);
       }
     }
   }
 
-  return ans;
+  return Array.from(and)
 };
