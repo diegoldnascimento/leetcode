@@ -4,7 +4,7 @@
  * @return {number}
  */
 var minimumLength = function (s) {
-  var ops = 0;
+  var frequecy = 0;
   var chars = new Map();
 
   for (var i = 0; i < s.length; i++) {
@@ -15,12 +15,12 @@ var minimumLength = function (s) {
     var stop = false;
 
     if (count % 2 == 0) {
-        ops = ops + 2;
+        frequecy += 2;
     } else {
-        ops = ops + 1
+        frequecy += 1
     }
   }
 
-  return ops;
+  return frequecy;
 };
 // @leet end
