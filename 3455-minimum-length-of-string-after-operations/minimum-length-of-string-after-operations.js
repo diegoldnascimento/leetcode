@@ -1,3 +1,4 @@
+
 // @leet start
 /**
  * @param {string} s
@@ -11,9 +12,7 @@ var minimumLength = function (s) {
     chars.set(s[i], chars.get(s[i]) + 1 || 1);
   }
 
-  for (const [char, count] of chars.entries()) {
-    var stop = false;
-
+  for (const [_, count] of chars.entries()) {
     if (count % 2 == 0) {
         frequecy += 2;
     } else {
