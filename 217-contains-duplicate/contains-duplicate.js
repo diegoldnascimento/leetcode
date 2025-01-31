@@ -12,7 +12,5 @@ var containsDuplicate = function(nums) {
         hashmap.set(nums[i], i)
     }
 
-    console.log({hashmap})
-
     return false
 };
