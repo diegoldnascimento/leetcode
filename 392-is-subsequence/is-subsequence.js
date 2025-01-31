@@ -4,27 +4,17 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    if (s == "" && t == "") {
-        return true;
-    }
+    var i = 0;
+    var j = 0;
 
-    if (s == "") {
-        return true;
-    }
-
-    var result = ""
-    var position = 0;
-
-    for (var i = 0; i < s.length; i++) {
-        var char = s[i];
-        position = t.indexOf(char, position);
-
-        if (position == -1) {
-            return false;
+    while(i < s.length && j < t.length) {
+        if (s[i] == t[j]) {
+            i++;
         }
+        j++;
 
-        position++;
+       
     }
 
-    return position > 0
+    return i === s.length
 };
