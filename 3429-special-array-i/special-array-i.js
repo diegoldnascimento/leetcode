@@ -8,11 +8,14 @@ var isArraySpecial = function(nums) {
     }
 
     for (var i = 1; i < nums.length; i++) {
-        if (nums[i] % 2 == 0 && nums[i - 1] % 2 == 0) {
+        var curr = nums[i]
+        var prev = nums[i - 1];
+
+        if (curr % 2 == 0 && prev % 2 == 0) {
             return false;
         }
 
-        if (nums[i] % 2 != 0 && nums[i - 1] % 2 != 0) {
+        if (curr % 2 != 0 && prev % 2 != 0) {
             return false;
         }
     }
