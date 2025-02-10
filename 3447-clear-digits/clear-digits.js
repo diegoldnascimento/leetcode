@@ -3,38 +3,18 @@
  * @return {string}
  */
 var clearDigits = function (s) {
-    let currentString = s;
+    const stack = [];
 
-    while (true) {
-        let firstDigitIndex = -1;
-        for (let i = 0; i < currentString.length; i++) {
-            if (!isNaN(currentString[i])) {
-                firstDigitIndex = i;
-                break;
+    for (let char of s) {
+        if (!isNaN(parseInt(char))) { // Check if character is a digit
+            if (stack.length > 0) {
+                stack.pop(); // Remove the closest non-digit to the left
             }
-        }
-
-        if (firstDigitIndex === -1) {
-            break; // No more digits
-        }
-
-        let closestNonDigitIndex = -1;
-        for (let i = firstDigitIndex - 1; i >= 0; i--) {
-            if (isNaN(currentString[i])) {
-                closestNonDigitIndex = i;
-                break;
-            }
-        }
-
-        let nextString = "";
-        if (closestNonDigitIndex !== -1) {
-            nextString = currentString.substring(0, closestNonDigitIndex) + currentString.substring(closestNonDigitIndex + 1, firstDigitIndex) + currentString.substring(firstDigitIndex + 1);
+            // Digit itself is also effectively removed in this process
         } else {
-            // According to problem description and examples, this case should not happen,
-            // but for robustness if no non-digit to left, just remove the digit.
-            nextString = currentString.substring(0, firstDigitIndex) + currentString.substring(firstDigitIndex + 1);
+            stack.push(char); // Push non-digit characters onto the stack
         }
-        currentString = nextString;
     }
-    return currentString;
+
+    return stack.join(''); // Join the characters in the stack to form the resulting string
 };
