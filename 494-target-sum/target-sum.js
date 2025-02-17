@@ -6,17 +6,16 @@
 var findTargetSumWays = function(nums, target) {
     var count = 0
 
-    function dfs(index, currentSum) {
-        if (index == nums.length) {
-            if (currentSum == target) {
-                count += 1
-                
+    function dfs(currentSum, index) {
+        if (index === nums.length) {
+            if (currentSum === target) {
+                count++;
             }
             return
         }
 
-        dfs(index + 1, currentSum + nums[index])
-        dfs(index + 1, currentSum - nums[index])
+        dfs(currentSum + nums[index], index + 1)
+        dfs(currentSum - nums[index], index + 1)
     }
 
     dfs(0, 0)
