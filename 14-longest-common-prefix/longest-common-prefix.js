@@ -9,7 +9,7 @@ var longestCommonPrefix = function (strs) {
 
     var chars = strs[0];
 
-    var longestCommonPrefix = []
+    var longestCommonPrefix = ""
 
     for (var i = 0; i < chars.length; i++) {
         var char = chars[i]
@@ -22,14 +22,14 @@ var longestCommonPrefix = function (strs) {
                 counter++
 
                 if (counter == strs.length - 1) {
-                    longestCommonPrefix.push(char2)
+                    longestCommonPrefix += char2
                 }
             } else {
-                return longestCommonPrefix.join("")
+                return longestCommonPrefix
             }
         }
     }
 
-    return longestCommonPrefix.join("")
+    return longestCommonPrefix
 
 };
