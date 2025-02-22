@@ -11,7 +11,7 @@
  * @param {TreeNode} q
  * @return {boolean}
  */
-var isSameTree = function(p, q) {
+var isSameTree = function (p, q) {
     if (!p && !q) {
         return true;
     }
@@ -21,7 +21,4 @@ var isSameTree = function(p, q) {
     }
 
     return false
-    
-    
-    
 };
