@@ -7,17 +7,18 @@ var isPerfectSquare = function(num) {
     var right = num;
 
     while (right >= left) {
-        var num2 = left * left;
+        var mid = Math.floor((left + right)/2)
+        var square = mid * mid;
 
-        if (num === num2) {
+        if (num === square) {
             return true;
         }
 
-        if (num2 > num) {
-            return false;
+        if (square > num) {
+            right = mid - 1;
+        } else {
+            left = mid + 1;
         }
-
-        left++;
     }
 
     return false;
