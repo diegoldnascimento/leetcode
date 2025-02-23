@@ -7,7 +7,7 @@ var subsets = function(nums) {
 
     function dfs(index, subset) {
         if (index === nums.length) {
-            result.push(subset);
+            result.push([...subset]);
             return;
         }
         
