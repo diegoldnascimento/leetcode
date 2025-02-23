@@ -1,22 +1,23 @@
-var subsets = function (nums) {
-    var possibilities = [];
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    let result = [];
 
-    function dfs(arr, index) {
+    function dfs(index, subset) {
         if (index === nums.length) {
-            possibilities.push([...arr]);
+            result.push(subset);
             return;
         }
         
         // Include nums[index]
-        arr.push(nums[index]);
-        dfs(arr, index + 1);
-        
-        // Exclude nums[index] (backtrack)
-        arr.pop();
-        dfs(arr, index + 1);
+        dfs(index + 1, [...subset, nums[index]]);
+
+        // Exclude nums[index]
+        dfs(index + 1, subset);
     }
 
-    dfs([], 0);
-    console.log({possibilities})
-    return possibilities;
+    dfs(0, []);
+    return result;
 };
