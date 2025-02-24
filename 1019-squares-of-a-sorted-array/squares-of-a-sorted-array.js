@@ -5,22 +5,22 @@
 var sortedSquares = function(nums) {
     var left = 0;
     var right = nums.length - 1;
-    var result = new Array(nums);
     var index = nums.length - 1;
+    var result = new Array(nums.length)
 
-    while (left <= right) {
-        var leftSquared = nums[left] * nums[left];
-        var rightSquared = nums[right] * nums[right];
+    while (right >= left) {
+        var leftSquared = nums[left] ** 2;
+        var rightSquared = nums[right] ** 2;
 
         if (leftSquared > rightSquared) {
-            result[index] = leftSquared;
-            left++;
+            result[index] = leftSquared
+            left++
         } else {
-            result[index] = rightSquared;
-            right--;
+            result[index] = rightSquared
+            right--
         }
-        index--;
-    }
+        index--
+    } 
 
-    return result;
+    return result
 };
