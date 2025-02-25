@@ -3,29 +3,30 @@
  * @return {Function}
  */
 function memoize(fn) {
-    var cache = new Map()
+    const cache = new Map();
     
     return function(...args) {
-        console.log({args})
-        var key = JSON.stringify(args)
-
-        if (cache.has(key)) {
-            return cache.get(key)
+        let current = cache;
+        for (const arg of args) {
+            if (!current.has(arg)) current.set(arg, new Map());
+            current = current.get(arg);
         }
-        var result = fn(...args);
-        cache.set(key, result)
-        return result
-    }
-}
+        if (current.has("result")) return current.get("result");
 
+        const result = fn(...args);
+        current.set("result", result);
+        return result;
+    };
+}
 
 /** 
  * let callCount = 0;
  * const memoizedFn = memoize(function (a, b) {
- *	 callCount += 1;
+ *   callCount += 1;
  *   return a + b;
- * })
- * memoizedFn(2, 3) // 5
- * memoizedFn(2, 3) // 5
- * console.log(callCount) // 1 
+ * });
+ * 
+ * console.log(memoizedFn(2, 3)); // 5
+ * console.log(memoizedFn(2, 3)); // 5 (cached)
+ * console.log(callCount); // 1
  */
