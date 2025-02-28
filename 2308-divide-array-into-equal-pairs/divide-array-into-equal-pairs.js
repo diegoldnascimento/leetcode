@@ -21,13 +21,13 @@ var divideArray = function(nums) {
             counter = 0;
             pairs--;
         }
+        
+        if (pairs == 0) {
+            return true;
+        }
  
         hashmap.set(num, counter)
     }
-    
-    if (pairs == 0) {
-        return true;
-    }
 
-    return false;
+    return pairs == 0;
 };
