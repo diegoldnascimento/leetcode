@@ -15,19 +15,16 @@ var divideArray = function(nums) {
     }
 
     for (const num of nums) {
-        hashmap.set(num, (hashmap.get(num) || 0) + 1)
-    }
+        var counter = (hashmap.get(num) || 0) + 1;
 
-    for (const [c, v] of hashmap.entries()) {
-        // 3 -> 4 / 2 = 2
-        if (v > 0) {
-            if (v % 2 == 0) {
-                pairs -= v / 2;
-            }
+        if (counter == 2) {
+            counter = 0;
+            pairs--;
         }
-
+ 
+        hashmap.set(num, counter)
     }
-
+    
     if (pairs == 0) {
         return true;
     }
