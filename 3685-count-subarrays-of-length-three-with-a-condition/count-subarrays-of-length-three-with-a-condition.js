@@ -17,6 +17,10 @@ var countSubarrays = function(nums) {
             return;
         }
 
+        if (index >= nums.length) {
+            return;
+        }
+
         dfs([...path, nums[index]], index + 1)
     }
 
