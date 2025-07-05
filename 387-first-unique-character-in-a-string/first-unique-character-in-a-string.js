@@ -3,22 +3,23 @@
  * @return {number}
  */
 var firstUniqChar = function(s) {
-    var currentCounter = 0;
-    var charFrequencyMap = new Map();
+    const charInfoMap = new Map();
 
-    for (var i = 0; i < s.length; i++) {
-        var char = s[i];
-        var obj = {
-            counter: (charFrequencyMap.get(char)?.counter || 0) + 1,
-            pos: i,
-        }
+    for (let index = 0; index < s.length; index++) {
+        const char = s[index];
+        const existingInfo = charInfoMap.get(char);
 
-        charFrequencyMap.set(char, obj)
+        const updatedInfo = {
+            count: (existingInfo?.count || 0) + 1,
+            firstIndex: index,
+        };
+
+        charInfoMap.set(char, updatedInfo);
     }
 
-    for (const charMap of charFrequencyMap.values()) {
-        if (charMap.counter === 1) {
-            return charMap.pos;
+    for (const { count, firstIndex } of charInfoMap.values()) {
+        if (count === 1) {
+            return firstIndex;
         }
     }
 
