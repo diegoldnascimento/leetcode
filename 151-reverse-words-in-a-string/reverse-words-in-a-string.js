@@ -3,20 +3,6 @@
  * @return {string}
  */
 
-function split(s, delimiter) {
-    const arr = [];
-    let start = 0;
-
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === delimiter) {
-            arr.push(s.substring(start, i));
-            start = i + 1;
-        }
-    }
-    arr.push(s.substring(start));
-    return arr;
-}
-
 var reverseWords = function(s) {
     // Given the string s, reverse the order of the words
     // return a string of the words in reserver order
@@ -32,8 +18,8 @@ var reverseWords = function(s) {
 
     var words = [];
     var result = [];
-    s = split(s, " ")
-
+    s = s.split(" ")
+    
     for (var i = s.length - 1; i >= 0; i--) {
         var word = s[i];
 
