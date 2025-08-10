@@ -3,25 +3,17 @@
  * @return {string}
  */
 
-var split = function (s, delimiter) {
-    var arr = [];
-    var str = ""
+function split(s, delimiter) {
+    const arr = [];
+    let start = 0;
 
-    for (var i = 0; i < s.length; i++) {
-        // abc ab
-
+    for (let i = 0; i < s.length; i++) {
         if (s[i] === delimiter) {
-            arr.push(str)
-            str = ""
-        } else {
-            str += s[i];
-        }
-
-        if (i === s.length - 1) {
-            arr.push(str)
+            arr.push(s.substring(start, i));
+            start = i + 1;
         }
     }
-console.log(arr)
+    arr.push(s.substring(start));
     return arr;
 }
 
