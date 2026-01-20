@@ -1,25 +1,35 @@
+/**
+ * @param {string} sentence
+ * @param {string} searchWord
+ * @return {number}
+ */
 var isPrefixOfWord = function(sentence, searchWord) {
-    var words = [];
-    var letters = "";  // ✅ declarado fora do loop
+    if (sentence.length === 0 || searchWord.length === 0) {
+        return -1;
+    } 
 
-    for (var i = 0; i < sentence.length; i++) {
-        if (sentence[i] !== " ") {  // ✅ compara com espaço
-            letters += sentence[i];
-        } else {
-            words.push(letters);
-            letters = "";
-        }
-    }
-    
-    // ✅ não esquecer da última palavra (não tem espaço depois)
-    if (letters.length > 0) {
-        words.push(letters);
-    }
+    var words = sentence.split(" ")
+    var idx = 1;
 
-    for (var i = 0; i < words.length; i++) {
-        if (words[i].startsWith(searchWord)) {
-            return i + 1;
+    for (const word of words) {
+        var counter = 0;
+        if (word.length >= searchWord.length) {
+            for (var i = 0; i < searchWord.length; i++) {
+                if (searchWord[i] === word[i]) {
+                    counter++
+                } else {
+                    counter = 0;
+                    break;
+                }
+            }
+
+            if (counter === searchWord.length) {
+                return idx;
+            }
+
+            counter = 0;
         }
+        idx++;
     }
 
     return -1;
